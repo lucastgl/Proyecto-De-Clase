@@ -1,6 +1,7 @@
-import Login from "../Screen/Login";
-import PerfilDetail from "../components/Producto/PerfilDetail";
 import Home from "../Screen/Home";
+import Login from "../Screen/Login";
+import UserSelected from "../Screen/UserSelected";
+import PerfilDetail from "../components/Producto/PerfilDetail";
 
 export const routes = [
     {
@@ -10,8 +11,8 @@ export const routes = [
     },
     {
         id: 2,
-        path: "/perfil-detail/",
-        Component: PerfilDetail
+        path: "/users/:login", /*los ":" nos permiten indeicarle a React que se trata de una ruta dinámica*/
+        Component: UserSelected
     }
 ];
 

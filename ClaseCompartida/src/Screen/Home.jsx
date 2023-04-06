@@ -1,22 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios';
+import { useGetData } from '../hooks/UseGetData';
+import {Link} from "react-router-dom"
+
 export const endpoint = "https://api.github.com/users";
 
 const Home = () => {
-  const [values, setValues] = useState(null);
 
-  useEffect(()=>{
-    axios.get(endpoint)
-      .then(({data}) => {
-        console.log(data);
-        setValues(data);
-      })
-      .catch((error)=>{
-        console.error(error);
-      })
-  },[]);
+  const {values} = useGetData(endpoint);
 
-  
   return (
     <div>
       {
@@ -24,6 +15,7 @@ const Home = () => {
           <div key={item.id}>
             <p>{item.login}</p>
             <img src={item.avatar_url}/>
+            <Link to={`/users/${item.login}`}>Ver mas</Link>
           </div>
       ))}
     </div>
