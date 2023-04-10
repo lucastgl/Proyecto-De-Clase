@@ -1,18 +1,21 @@
 import React, { useState, useContext } from 'react'
+
+import { Button } from '@mui/material';
 import { useNavigate} from "react-router-dom";
 import { NewContext } from '../context/Context';
-import { Box, Button, TextField } from '@mui/material';
 import { FormContainer, Input, Container} from '../styles/styledComponent';
 
 const Login = () => {
+
    const [values, setValues] = useState({email: "", password: ""});
-   const {handleLogin} = useContext(NewContext);
+   const { dispatch } = useContext(NewContext); /*consumo del contexto la función que maneja el "state" */
    const navigate = useNavigate();
 
-   const handleSubmit = (e) => {
-        e.preventDefault();
-        handleLogin();
-        navigate("/home");
+    const handleSubmit = (e) => {
+        /*Al loggearme en el formulario realizo 3 acciones*/
+        /* 1° */ e.preventDefault(); /*evito el comportamiento por default*/
+        /* 2° */ dispatch({type: "LOGGIN", payload: values.email}); /*le paso a la función dispatch del useReducer del context el caso type que quiero ejecutar*/
+        /* 3° */ navigate("/home"); /*una vez ya loggeado, me redirijo a otra página, en este caso home*/
     }
 
     return (

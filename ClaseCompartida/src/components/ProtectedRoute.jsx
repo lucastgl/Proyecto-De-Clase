@@ -4,6 +4,6 @@ import { NewContext } from '../context/Context';
 
 export const ProtectedRoutes = () => {
 
-    const {isLogged} = useContext(NewContext);
-    return isLogged ? <Outlet /> : <Navigate to="/login"/>;
+    const { state } = useContext(NewContext);
+    return state?.isLogged ? <Outlet /> : <Navigate to="/login"/>;
 };

@@ -9,7 +9,7 @@ export const useGetData = (endpoint) =>{
     useEffect(()=>{
       axios.get(endpoint)
         .then(({data}) => {
-          console.log(data);
+          // console.log(data);
           setValues(data);
         })
         .catch((error)=>{
